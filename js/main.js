@@ -15,7 +15,7 @@ function getDrink() {
 
       html = "";
 
-      for (let i = 0; i < data.drinks.length; i++) {
+      for (let i = 0; i < data.drinks.length - 1; i++) {
         html += `<div class="card"><h2>${data.drinks[i].strDrink}</h2>
       <img src = "${data.drinks[i].strDrinkThumb}" alt="${data.drinks[0].strDrink}"
       <h3> Instructions: ${data.drinks[i].strInstructions}</h3>

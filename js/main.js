@@ -16,11 +16,19 @@ function getDrink() {
       html = "";
 
       for (let i = 0; i < data.drinks.length - 1; i++) {
-        html += `<div class="card"><h2>${data.drinks[i].strDrink}</h2>
+        if (i === 0) {
+          html += `<div class="card active"><h2>${data.drinks[i].strDrink}</h2>
+          <img src = "${data.drinks[i].strDrinkThumb}" alt="${data.drinks[0].strDrink}"
+          <h3> Instructions: ${data.drinks[i].strInstructions}</h3>
+          </div>
+          `;
+        } else {
+          html += `<div class="card"><h2>${data.drinks[i].strDrink}</h2>
       <img src = "${data.drinks[i].strDrinkThumb}" alt="${data.drinks[0].strDrink}"
       <h3> Instructions: ${data.drinks[i].strInstructions}</h3>
       </div>
       `;
+        }
       }
 
       document
@@ -33,4 +41,30 @@ function getDrink() {
 }
 
 //homework: handle drink names w/ multiple words (spaces), mispellings, and rotating carousel of drinks that automatically runs.
-//need a condition if the search returns less than 6 results
+
+//carousel of search results
+document.querySelector("button").addEventListener("click", spinCarousel);
+const cards = document.getElementsByClassName("card");
+
+let activeSlide = 0;
+
+let interval;
+
+function spinCarousel() {
+  document.querySelector(".drinkResults").innerHTML = "";
+  clearInterval(interval);
+
+  interval = setInterval(() => {
+    if (activeSlide === cards.length - 1) {
+      activeSlide = 0;
+    } else {
+      activeSlide++;
+    }
+    activeCard();
+  }, 4000);
+}
+function activeCard() {
+  [...cards].forEach((card) => card.classList.remove("active"));
+
+  [...cards][activeSlide].classList.add("active");
+}

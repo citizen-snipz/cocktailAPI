@@ -39,10 +39,16 @@ h3 {
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 .card {
+  display: none;
   background-color: aliceblue;
   width: 40vw;
   height: 50vw;
   margin: 2em;
   padding: 1em 2.5em;
+}
+
+.active {
+  display: block;
 }
